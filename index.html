@@ -6,7 +6,7 @@
     <title>LMACFY – Let Me Ask Claude For You</title>
     <meta name="description" content="The passive-aggressive way to tell someone to just ask Claude. Generate a shareable link.">
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -29,17 +29,24 @@
                     <span class="asterisk">✳</span> Welcome to <strong>LMACFY</strong>
                 </div>
 
-                <!-- Big ASCII Logo -->
-                <div class="logo-area">
-                    <h1 class="logo">LET ME<br>ASK<br>CLAUDE</h1>
-                </div>
+                <!-- Logo + Robot row -->
+                <div class="hero-row">
+                    <!-- Big Logo -->
+                    <div class="logo-area">
+                        <h1 class="logo">LET ME<br>ASK<br>CLAUDE</h1>
+                    </div>
 
-                <!-- Decorative elements -->
-                <div class="deco deco-1">+</div>
-                <div class="deco deco-2">⚙</div>
-                <div class="deco deco-3">✦</div>
-                <div class="deco deco-4">+</div>
-                <div class="deco deco-5">⚙</div>
+                    <!-- Robot -->
+                    <div class="robot-area">
+                        <img src="assets/claude-robot.jpg" alt="Claude Robot" class="robot-img">
+                        <!-- Decorative elements around robot -->
+                        <div class="deco deco-1">+</div>
+                        <div class="deco deco-2">⚙</div>
+                        <div class="deco deco-3">✦</div>
+                        <div class="deco deco-4">+</div>
+                        <div class="deco deco-5">⚙</div>
+                    </div>
+                </div>
 
                 <!-- Creation Mode -->
                 <div id="creation-mode" class="mode-container hidden">
@@ -50,7 +57,7 @@
                     </div>
 
                     <div id="result-container" class="hidden">
-                        <p class="success-msg">🎉 Link generated. Press <strong>[COPY]</strong> to continue</p>
+                        <p class="success-msg">�� Link generated. Press <strong>[COPY]</strong> to continue</p>
                         <div class="copy-wrapper">
                             <input type="text" id="generated-link" readonly>
                             <button id="copy-btn">[COPY]</button>

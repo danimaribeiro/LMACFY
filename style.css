@@ -12,7 +12,7 @@
     --dot-red: #FF5F57;
     --dot-yellow: #FEBC2E;
     --dot-green: #28C840;
-    --font-logo: 'Silkscreen', cursive;
+    --font-logo: 'Press Start 2P', cursive;
     --font-mono: 'Fira Code', monospace;
 }
 
@@ -26,16 +26,16 @@ body {
     background-color: var(--bg-outer);
     font-family: var(--font-mono);
     line-height: 1.5;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 #app {
     width: 100%;
-    max-width: 900px;
+    max-width: 960px;
     padding: 2rem;
 }
 
@@ -80,7 +80,7 @@ body {
 .terminal-content {
     padding: 2rem 2.5rem 1.5rem;
     position: relative;
-    min-height: 480px;
+    min-height: 520px;
     display: flex;
     flex-direction: column;
 }
@@ -108,22 +108,55 @@ body {
     color: #fff;
 }
 
-/* Big blocky pixel logo */
-.logo-area {
+/* ===========================
+   Hero Row: Logo + Robot
+   =========================== */
+.hero-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
     margin-bottom: 2rem;
+}
+
+.logo-area {
+    flex: 1;
     text-align: left;
 }
 
 .logo {
     font-family: var(--font-logo);
-    font-size: 4.5rem;
-    font-weight: 700;
+    font-size: 3.2rem;
+    font-weight: 400;
     color: var(--accent);
-    line-height: 1.05;
-    letter-spacing: 3px;
+    line-height: 1.3;
+    letter-spacing: 2px;
     text-shadow:
         3px 3px 0 rgba(0, 0, 0, 0.6),
-        6px 6px 0 rgba(0, 0, 0, 0.2);
+        6px 6px 0 rgba(0, 0, 0, 0.15);
+}
+
+/* Robot area */
+.robot-area {
+    position: relative;
+    flex-shrink: 0;
+    width: 240px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.robot-img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.5));
+    animation: robotHover 4s ease-in-out infinite;
+}
+
+@keyframes robotHover {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-10px); }
 }
 
 /* ===========================
@@ -137,11 +170,11 @@ body {
     animation: float 6s ease-in-out infinite;
 }
 
-.deco-1 { top: 90px; right: 40px; animation-delay: 0s; }
-.deco-2 { top: 180px; right: 60px; font-size: 1.8rem; animation-delay: 1.2s; }
-.deco-3 { top: 60px; right: 120px; font-size: 1rem; animation-delay: 0.6s; }
-.deco-4 { bottom: 100px; right: 50px; animation-delay: 2s; }
-.deco-5 { bottom: 70px; right: 130px; font-size: 1rem; animation-delay: 3s; }
+.deco-1 { top: -10px; left: -15px; animation-delay: 0s; }
+.deco-2 { top: 40px; right: -20px; font-size: 1.8rem; animation-delay: 1.2s; }
+.deco-3 { top: -5px; right: 30px; font-size: 1rem; animation-delay: 0.6s; }
+.deco-4 { bottom: 30px; left: -10px; animation-delay: 2s; }
+.deco-5 { bottom: 10px; right: -15px; font-size: 1rem; animation-delay: 3s; }
 
 @keyframes float {
     0%, 100% { transform: translateY(0); }
@@ -153,7 +186,6 @@ body {
    =========================== */
 .mode-container {
     width: 100%;
-    max-width: 600px;
     display: flex;
     flex-direction: column;
     flex: 1;
@@ -210,6 +242,7 @@ button {
     margin-left: 14px;
     padding: 4px 0;
     transition: color 0.2s, text-shadow 0.2s;
+    white-space: nowrap;
 }
 
 button:hover {
@@ -364,10 +397,12 @@ button:hover {
 /* ===========================
    Responsive
    =========================== */
-@media (max-width: 640px) {
+@media (max-width: 768px) {
     #app { padding: 1rem; }
-    .terminal-content { padding: 1.5rem 1.2rem 1rem; min-height: 420px; }
-    .logo { font-size: 2.8rem; }
+    .terminal-content { padding: 1.5rem 1.2rem 1rem; min-height: auto; }
+    .hero-row { flex-direction: column; align-items: flex-start; }
+    .logo { font-size: 2rem; }
+    .robot-area { width: 160px; align-self: center; }
     .deco { display: none; }
     input[type="text"] { font-size: 0.95rem; }
 }
