@@ -3,6 +3,7 @@
     --text-primary: #EE6F49; /* Vibrant orange */
     --text-secondary: #D4AF9C;
     --text-terminal: #A1C6E6; /* Light blueish for terminal text */
+    --text-error: #F38BA8; /* Soft red for errors */
     --font-logo: 'Silkscreen', cursive;
     --font-mono: 'Fira Code', monospace;
     --box-border: #EE6F49;
@@ -210,11 +211,34 @@ button:hover {
     transition: transform 1s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
+#terminal-output {
+    margin-top: 1rem;
+    font-size: 1.1rem;
+    color: var(--text-terminal);
+    line-height: 1.5;
+    white-space: pre-wrap;
+}
+
+.log-line {
+    animation: fadeIn 0.2s ease-out;
+    margin-bottom: 8px;
+}
+
+.error-line {
+    color: var(--text-error);
+    font-weight: bold;
+}
+
 #snarky-message {
     margin-top: 2rem;
     font-size: 1.1rem;
-    color: var(--text-terminal);
+    color: var(--text-primary);
     animation: fadeIn 0.5s ease-out;
+    text-align: center;
+    border: 1px solid var(--box-border);
+    padding: 12px;
+    border-radius: 8px;
+    background: rgba(238, 111, 73, 0.1);
 }
 
 @keyframes fadeIn {

@@ -99,16 +99,41 @@ function startAnimation(query) {
                             sendBtn.style.transform = 'scale(0.9)';
                             setTimeout(() => sendBtn.style.transform = 'scale(1)', 100);
                             
-                            // 6. Show message
+                            // 6. Terminal logs animation
                             setTimeout(() => {
-                                snarkyMessage.classList.remove('hidden');
+                                cursor.classList.add('hidden'); // hide cursor completely
+                                const output = document.getElementById('terminal-output');
+                                const logs = [
+                                    "[*] Initializing connection to Claude...",
+                                    "[*] Transmitting encoded prompt...",
+                                    "[*] Analyzing user behavior...",
+                                    "[!] WARNING: Extreme levels of laziness detected.",
+                                    "[*] Rerouting to manual mode..."
+                                ];
                                 
-                                // 7. Redirect
-                                setTimeout(() => {
-                                    window.location.href = "https://claude.ai/new";
-                                }, 3000);
+                                let logIndex = 0;
+                                const logInterval = setInterval(() => {
+                                    if (logIndex < logs.length) {
+                                        const line = document.createElement('div');
+                                        line.className = 'log-line';
+                                        if (logs[logIndex].includes('WARNING')) {
+                                            line.classList.add('error-line');
+                                        }
+                                        line.innerText = logs[logIndex];
+                                        output.appendChild(line);
+                                        logIndex++;
+                                    } else {
+                                        clearInterval(logInterval);
+                                        
+                                        // 7. Show final message
+                                        setTimeout(() => {
+                                            snarkyMessage.innerText = "🎉 Task failed successfully. Now go ask Claude yourself!";
+                                            snarkyMessage.classList.remove('hidden');
+                                        }, 600);
+                                    }
+                                }, 800); // 800ms between lines
+                                
                             }, 500);
-                            
                         }, 1000);
                     }, 500);
                 }
