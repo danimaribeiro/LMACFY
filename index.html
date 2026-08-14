@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Let Me Ask Claude For You</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <!-- Header -->
+        <header>
+            <h1 class="logo">Let Me Ask Claude For You</h1>
+        </header>
+
+        <!-- Main Content -->
+        <main>
+            <!-- Creation Mode -->
+            <div id="creation-mode" class="mode-container hidden">
+                <h2>Generate a link to share</h2>
+                <div class="input-wrapper">
+                    <input type="text" id="prompt-input" placeholder="What do you want to ask?" autofocus autocomplete="off">
+                    <button id="generate-btn">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 4L12 20M12 20L18 14M12 20L6 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </div>
+                
+                <div id="result-container" class="hidden">
+                    <p>Share this link:</p>
+                    <div class="copy-wrapper">
+                        <input type="text" id="generated-link" readonly>
+                        <button id="copy-btn">Copy</button>
+                    </div>
+                    <a id="preview-link" href="#" target="_blank">Preview</a>
+                </div>
+            </div>
+
+            <!-- Animation Mode -->
+            <div id="animation-mode" class="mode-container hidden">
+                <div class="fake-browser">
+                    <div class="input-wrapper fake-input-wrapper">
+                        <div id="fake-input-text"></div>
+                        <button id="fake-send-btn">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 4L12 20M12 4L6 10M12 4L18 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div id="fake-cursor">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M11 27L15 20L23 20L9 5L9 27C9 27.5523 9.44772 28 10 28C10.5523 28 11 27.5523 11 27Z" fill="white" stroke="black" stroke-width="1.5" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div id="snarky-message" class="hidden">Was that so hard?</div>
+            </div>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
