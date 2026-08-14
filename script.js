@@ -51,7 +51,7 @@ function setupCreationMode() {
         document.execCommand('copy');
         
         const originalText = copyBtn.innerText;
-        copyBtn.innerText = 'Copied!';
+        copyBtn.innerText = '[COPIED!]';
         setTimeout(() => {
             copyBtn.innerText = originalText;
         }, 2000);
@@ -60,17 +60,15 @@ function setupCreationMode() {
 
 function startAnimation(query) {
     const cursor = document.getElementById('fake-cursor');
-    const inputWrapper = document.querySelector('.fake-input-wrapper');
     const textElement = document.getElementById('fake-input-text');
     const sendBtn = document.getElementById('fake-send-btn');
     const snarkyMessage = document.getElementById('snarky-message');
 
-    // Sequence:
     setTimeout(() => {
         // 1. Move to input box
-        const inputRect = inputWrapper.getBoundingClientRect();
-        const targetX = inputRect.left + 20;
-        const targetY = inputRect.top + inputRect.height / 2;
+        const textElementRect = textElement.getBoundingClientRect();
+        const targetX = textElementRect.left + 10;
+        const targetY = textElementRect.top + textElementRect.height / 2;
         
         cursor.style.transform = `translate(${targetX}px, ${targetY}px)`;
 

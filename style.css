@@ -1,12 +1,11 @@
 :root {
-    --bg-color: #1a1816;
-    --card-bg: #2b2a27;
-    --text-primary: #e6e4d9;
-    --text-secondary: #a3a198;
-    --accent-color: #d97757;
-    --border-color: #3f3e3a;
-    --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
-    --font-serif: 'Newsreader', ui-serif, Georgia, serif;
+    --bg-color: #171512;
+    --text-primary: #EE6F49; /* Vibrant orange */
+    --text-secondary: #D4AF9C;
+    --text-terminal: #A1C6E6; /* Light blueish for terminal text */
+    --font-logo: 'Silkscreen', cursive;
+    --font-mono: 'Fira Code', monospace;
+    --box-border: #EE6F49;
 }
 
 * {
@@ -18,7 +17,7 @@
 body {
     background-color: var(--bg-color);
     color: var(--text-primary);
-    font-family: var(--font-sans);
+    font-family: var(--font-mono);
     line-height: 1.5;
     height: 100vh;
     display: flex;
@@ -38,20 +37,23 @@ body {
 }
 
 header {
-    margin-bottom: 3rem;
+    margin-bottom: 2.5rem;
+    text-align: center;
 }
 
 .logo {
-    font-family: var(--font-serif);
-    font-size: 2.5rem;
-    font-weight: 500;
+    font-family: var(--font-logo);
+    font-size: 5.5rem;
+    font-weight: 400;
     color: var(--text-primary);
-    letter-spacing: -0.02em;
+    line-height: 1;
+    text-shadow: 4px 4px 0px rgba(0,0,0,0.5), -1px -1px 0px rgba(238, 111, 73, 0.2);
+    letter-spacing: 2px;
 }
 
 .mode-container {
     width: 100%;
-    max-width: 600px;
+    max-width: 700px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -61,64 +63,77 @@ header {
     display: none !important;
 }
 
-h2 {
-    font-weight: 500;
-    font-size: 1.2rem;
-    color: var(--text-secondary);
-    margin-bottom: 1.5rem;
+.terminal-box {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.terminal-header {
+    border: 1px solid var(--box-border);
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-size: 1.1rem;
+    display: inline-block;
+    align-self: flex-start;
+    box-shadow: inset 0 0 10px rgba(238, 111, 73, 0.1);
+}
+
+.asterisk {
+    color: var(--text-primary);
+    font-weight: bold;
 }
 
 .input-wrapper {
     position: relative;
     width: 100%;
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
-    padding: 12px 16px;
     display: flex;
     align-items: center;
-    transition: border-color 0.2s, box-shadow 0.2s;
+    font-size: 1.2rem;
 }
 
-.input-wrapper:focus-within {
-    border-color: var(--accent-color);
-    box-shadow: 0 0 0 2px rgba(217, 119, 87, 0.2);
+.prompt-symbol {
+    color: var(--text-primary);
+    margin-right: 12px;
+    font-weight: bold;
 }
 
 input[type="text"] {
     flex: 1;
     background: transparent;
     border: none;
+    border-bottom: 2px dashed rgba(238, 111, 73, 0.4);
     color: var(--text-primary);
-    font-size: 1rem;
-    font-family: var(--font-sans);
+    font-size: 1.2rem;
+    font-family: var(--font-mono);
     outline: none;
+    padding: 8px 0;
+    transition: border-bottom 0.2s;
 }
 
 input[type="text"]::placeholder {
-    color: var(--text-secondary);
+    color: rgba(238, 111, 73, 0.4);
+}
+
+input[type="text"]:focus {
+    border-bottom: 2px solid var(--text-primary);
 }
 
 button {
-    background: var(--text-primary);
-    color: var(--bg-color);
+    background: transparent;
+    color: var(--text-primary);
     border: none;
-    border-radius: 8px;
-    width: 32px;
-    height: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    font-family: var(--font-mono);
+    font-size: 1.1rem;
     cursor: pointer;
-    transition: opacity 0.2s;
+    margin-left: 16px;
+    transition: all 0.2s;
 }
 
 button:hover {
-    opacity: 0.8;
-}
-
-#generate-btn {
-    margin-left: 12px;
+    color: white;
+    text-shadow: 0 0 8px var(--text-primary);
 }
 
 #result-container {
@@ -126,36 +141,35 @@ button:hover {
     width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
     gap: 1rem;
     animation: fadeIn 0.3s ease-out;
+}
+
+.success-msg {
+    color: var(--text-terminal);
+    font-size: 1rem;
 }
 
 .copy-wrapper {
     display: flex;
     width: 100%;
-    gap: 8px;
+    align-items: center;
 }
 
 .copy-wrapper input {
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    padding: 10px 14px;
-    border-radius: 8px;
-    color: var(--text-secondary);
-    font-size: 0.9rem;
-}
-
-.copy-wrapper button {
-    width: auto;
-    padding: 0 16px;
-    font-weight: 500;
+    flex: 1;
+    border: 1px solid var(--box-border);
+    border-bottom: 1px solid var(--box-border); /* override dashed */
+    padding: 8px 12px;
+    border-radius: 4px;
+    color: var(--text-primary);
 }
 
 #preview-link {
-    color: var(--accent-color);
+    color: var(--text-primary);
     text-decoration: none;
-    font-size: 0.9rem;
+    font-size: 1rem;
+    align-self: flex-start;
 }
 
 #preview-link:hover {
@@ -164,20 +178,21 @@ button:hover {
 
 /* Animation Mode Styles */
 .fake-input-wrapper {
-    min-height: 56px;
+    min-height: 40px;
 }
 
 #fake-input-text {
     flex: 1;
-    font-size: 1rem;
+    font-size: 1.2rem;
     white-space: pre-wrap;
     word-break: break-word;
+    border-bottom: 2px solid transparent;
 }
 
 #fake-input-text::after {
-    content: '|';
+    content: '█';
     animation: blink 1s step-end infinite;
-    margin-left: 2px;
+    margin-left: 4px;
     opacity: 0;
 }
 
@@ -196,22 +211,15 @@ button:hover {
 }
 
 #snarky-message {
-    position: absolute;
-    top: 20%;
-    font-family: var(--font-serif);
-    font-size: 2rem;
-    color: var(--accent-color);
-    animation: fadeIn 0.5s ease-out, fadeOut 0.5s ease-in 2.5s forwards;
+    margin-top: 2rem;
+    font-size: 1.1rem;
+    color: var(--text-terminal);
+    animation: fadeIn 0.5s ease-out;
 }
 
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes fadeOut {
-    from { opacity: 1; }
-    to { opacity: 0; }
 }
 
 @keyframes blink {
