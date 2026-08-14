@@ -148,7 +148,8 @@ body {
 
 .robot-img {
     width: 100%;
-    height: auto;
+    max-height: 220px;
+    object-fit: contain;
     border-radius: 8px;
     filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.5));
     animation: robotHover 4s ease-in-out infinite;
