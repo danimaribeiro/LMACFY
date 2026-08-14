@@ -3,63 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Let Me Ask Claude For You</title>
+    <title>LMACFY – Let Me Ask Claude For You</title>
+    <meta name="description" content="The passive-aggressive way to tell someone to just ask Claude. Generate a shareable link.">
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Silkscreen&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <div id="app">
-        <!-- Header -->
-        <header>
-            <h1 class="logo">CLAUDE<br>CODE</h1>
-        </header>
-
-        <!-- Main Content -->
-        <main>
-            <!-- Creation Mode -->
-            <div id="creation-mode" class="mode-container hidden">
-                <div class="terminal-box">
-                    <div class="terminal-header">
-                        <span class="asterisk">*</span> Welcome to LMACFY
-                    </div>
-                    <div class="input-wrapper">
-                        <span class="prompt-symbol">&gt;</span>
-                        <input type="text" id="prompt-input" placeholder="Enter your prompt..." autofocus autocomplete="off">
-                        <button id="generate-btn">[GENERATE]</button>
-                    </div>
-                </div>
-                
-                <div id="result-container" class="hidden">
-                    <p class="success-msg">🎉 Link generated successfully. Press [COPY] to continue.</p>
-                    <div class="copy-wrapper">
-                        <input type="text" id="generated-link" readonly>
-                        <button id="copy-btn">[COPY]</button>
-                    </div>
-                    <a id="preview-link" href="#" target="_blank">[PREVIEW_LINK]</a>
+        <!-- Terminal Window -->
+        <div class="terminal-window">
+            <!-- macOS-style title bar -->
+            <div class="title-bar">
+                <div class="traffic-lights">
+                    <span class="dot dot-red"></span>
+                    <span class="dot dot-yellow"></span>
+                    <span class="dot dot-green"></span>
                 </div>
             </div>
 
-            <!-- Animation Mode -->
-            <div id="animation-mode" class="mode-container hidden">
-                <div class="terminal-box">
-                    <div class="terminal-header">
-                        <span class="asterisk">*</span> Executing LMACFY sequence
+            <!-- Terminal Content -->
+            <div class="terminal-content">
+
+                <!-- Welcome banner -->
+                <div class="welcome-box">
+                    <span class="asterisk">✳</span> Welcome to <strong>LMACFY</strong>
+                </div>
+
+                <!-- Big ASCII Logo -->
+                <div class="logo-area">
+                    <h1 class="logo">LET ME<br>ASK<br>CLAUDE</h1>
+                </div>
+
+                <!-- Decorative elements -->
+                <div class="deco deco-1">+</div>
+                <div class="deco deco-2">⚙</div>
+                <div class="deco deco-3">✦</div>
+                <div class="deco deco-4">+</div>
+                <div class="deco deco-5">⚙</div>
+
+                <!-- Creation Mode -->
+                <div id="creation-mode" class="mode-container hidden">
+                    <div class="input-wrapper">
+                        <span class="prompt-symbol">&gt;</span>
+                        <input type="text" id="prompt-input" placeholder="Type the question they should have asked..." autofocus autocomplete="off">
+                        <button id="generate-btn">[GENERATE]</button>
                     </div>
+
+                    <div id="result-container" class="hidden">
+                        <p class="success-msg">🎉 Link generated. Press <strong>[COPY]</strong> to continue</p>
+                        <div class="copy-wrapper">
+                            <input type="text" id="generated-link" readonly>
+                            <button id="copy-btn">[COPY]</button>
+                        </div>
+                        <a id="preview-link" href="#" target="_blank">[PREVIEW]</a>
+                    </div>
+                </div>
+
+                <!-- Animation Mode -->
+                <div id="animation-mode" class="mode-container hidden">
                     <div class="input-wrapper fake-input-wrapper">
                         <span class="prompt-symbol">&gt;</span>
                         <div id="fake-input-text"></div>
                         <button id="fake-send-btn">[SEND]</button>
                     </div>
                     <div id="terminal-output"></div>
+                    <div id="snarky-message" class="hidden"></div>
                 </div>
-                <div id="fake-cursor">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M7 2L17 12L12 14L15 21L12 22L9 15L4 18L7 2Z" fill="white" stroke="black" stroke-width="1.5" stroke-linejoin="round"/>
-                    </svg>
+
+                <!-- Bottom status line -->
+                <div class="status-bar">
+                    <span class="status-text">🎉 Let Me Ask Claude For You. Press <strong>Enter</strong> to continue</span>
                 </div>
-                <div id="snarky-message" class="hidden"></div>
+
             </div>
-        </main>
+        </div>
+
+        <!-- Fake mouse cursor for animation mode -->
+        <div id="fake-cursor" class="hidden">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7 2L17 12L12 14L15 21L12 22L9 15L4 18L7 2Z" fill="white" stroke="black" stroke-width="1.5" stroke-linejoin="round"/>
+            </svg>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>
